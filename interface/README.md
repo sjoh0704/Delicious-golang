@@ -61,3 +61,6 @@ func printVal(v interface{}){
 }
 ```
 여기서 v는 모든 타입(int64, float64, string...)
+
+### 인터페이스에서 원하는 객체를 가져올때 
+타입 변환을 통해서 원하는 객체를 가져온다. 
