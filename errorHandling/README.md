@@ -17,3 +17,14 @@ ex) 심장에 관련된 프로그램 => 프로그램이 죽으면 큰일난다.
 두가지 방식을 사용한다.
 - fmt.Errorf(formatter string, ...interface{}) error
 - error.New(text string) error 
+
+
+### error의 타입
+```
+type error interface{
+    Error() string
+}
+```
+위 인터페이스만 맞추면 에러를 만들 수 있다. 
+
+
