@@ -14,8 +14,9 @@ func main(){
 	var a [6]int = [6]int{1, 2, 3, 4, 5, 6} 
 	var b [6]int
 	fmt.Println(a)
-	a = b
-	fmt.Println(b)
+	a = b // 복사된다. 
+	fmt.Println(b) 
+	// a와 b는 다른 메모리에 올라가지만, 비교시에는 true
 
 	// 2. 배열의 특정 인덱스에만 값 지정하여 변수 생성하기 
 	var c [6]int = [6]int{1:2, 3:4}

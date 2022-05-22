@@ -1,0 +1,2 @@
+
+go mod init goprojects/test 를 통해서 루트 모듈 생성 (/practice)
