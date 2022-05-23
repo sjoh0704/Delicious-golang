@@ -1,3 +1,5 @@
+// 에러 
+// 에러를 사용자단으로 올려서 사용자가 처리할 수 있게 한다. 
 package main
 
 import (
@@ -7,7 +9,7 @@ import (
 )
 
 
-func WriteFile(filename string, line string) error{
+func WriteFile(filename string, line string) error {
 	file, err := os.Create(filename)
 	if err != nil{
 		return err

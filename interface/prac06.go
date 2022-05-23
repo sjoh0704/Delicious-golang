@@ -1,5 +1,5 @@
 // 다른 인터페이스로 변환하기 
-
+// 타입 변환시 문제점을 해결하는 방법(prac05 참고) 
 package main
 
 import (
@@ -27,10 +27,8 @@ func (f *File) Read(){
 // }
 
 func ReadFile(reader Reader){
-	// reader에 close() 함수가 없어도 빌드시에 에러가 나지 않는다. 
-	// 하지만 close()를 사용하면 error 발생  
-	// 그래서 두번째 인자를 통해서 성공 여부를 확인할 수 있다. 
 	
+	// 다음과 같은 방법으로 타입변환을 해도 패닉을 피해갈 수 있음
 	c, ok := reader.(Closer) // Closer로 형변환 
 	if ok {
 		c.Close()  

@@ -17,7 +17,7 @@ ex) 심장에 관련된 프로그램 => 프로그램이 죽으면 큰일난다.
 두가지 방식을 사용한다.
 - fmt.Errorf(formatter string, ...interface{}) error
 - error.New(text string) error 
-
+ 
 
 ### error의 타입
 ```

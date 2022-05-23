@@ -1,3 +1,4 @@
+// Error 인터페이스 이용해서 사용자 에러 만들기 
 package main
 
 import (
@@ -10,13 +11,13 @@ type PasswordError struct{
 }
 
 // error interface가 되기 위해서 필요한 메서드
-func (passwordError PasswordError) Error() string{
+func (err PasswordError) Error() string{
 	return "암호 길이가 짧습니다."
 }
 
 func RegisterAccount(id string, password string) error {
 	if len(password) < 8{
-		// error interface가 되기 위해서는 Error() string이 필요 
+		// error interface가 되기 위해서는 Error() string이 필요 (인터페이스는 이미 만들어져 있는 것!)
 		// return fmt.Errorf("암호 길이가 짧습니다. %d", 8) => 이러한 방식도 있지만 디테일한 정보를 얻기 힘들다. 
 		return PasswordError{len(password), 8}
 	}else{
