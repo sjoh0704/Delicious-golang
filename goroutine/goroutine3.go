@@ -12,11 +12,12 @@ type Account struct{
 	Balance int
 }
 
-func depositAndWithdraw(ac *Account){
+var mutex sync.Mutex
 
+func depositAndWithdraw(ac *Account, idx int){
 	// mutex를 이용해서 lock을 건다. 
-	mutex.Lock()
-	defer mutex.Unlock()
+	mutex.Lock() // Lock을 만난 경우 고루틴 하나만 접근할 수 있음 
+	// defer mutex.Unlock()
 
 	if ac.Balance < 0{
 		panic(fmt.Sprintf("negative value is not possible: %d", ac.Balance))
@@ -24,11 +25,12 @@ func depositAndWithdraw(ac *Account){
 	ac.Balance -= 1000
 	time.Sleep(time.Millisecond)
 	ac.Balance += 1000
+	fmt.Println(idx, "끝")
 }
 
-var mutex sync.Mutex
 
 func main(){
+
 
 	var wg sync.WaitGroup
 	wg.Add(10)
@@ -37,10 +39,12 @@ func main(){
 	myAccount := &Account{10}
 
 	for i:=0; i<10; i++{
+		idx := i
 		go func(){
-			for{
-				depositAndWithdraw(myAccount)
-			}
+			// for{
+			// 	depositAndWithdraw(myAccount)
+			// }
+			depositAndWithdraw(myAccount, idx)
 			wg.Done()
 		}()
 	}
