@@ -1,5 +1,7 @@
-// 생성자, 소비자 패턴
-// 차체 생산 => 바퀴 설치 => 도색
+// 채널을 이용한 생산자/소비자 패턴
+// 차체 생산 => 바퀴 설치 => 도색(2개의 채널일 필요)
+// 채널을 사용한다면 10초
+// 채널을 사용하지 않고, 동기적으로 했다면 20초 
 package main
 
 import (
@@ -42,7 +44,7 @@ func MakeBody(tireCh chan *Car){
 	
 	for{
 		select{
-		case <- tick:
+		case <- tick: // I/O
 			car := &Car{}
 			car.Body = "Sports Car"
 			tireCh <- car
@@ -74,7 +76,7 @@ func PaintCar(paintCh chan *Car){
 	for car := range paintCh{
 		car.Color = "Red"
 		duration := time.Now().Sub(startTime)
-		fmt.Println(car, duration)
+		fmt.Println("완성: ", *car, "생산 시간:", duration)
 	}
 	wg.Done()
 }

@@ -11,17 +11,17 @@ import (
 func main(){
 
 	//1. 보관함이 없는 경우  
-	// ch := make(chan int) // 하지만 보관함이 없는 경우 
-	// go square() // 수신자가 받을 때 까지 
-	// ch <- 9  //채널의 데이터를 안쓰니까 멈춰 있음.
-	// fmt.Println("Never print")
+	ch := make(chan int) // 하지만 보관함이 없는 경우 
+	go square() 
+	ch <- 9  // 수신자가 없으므로 수신할때 까지 대기
+	fmt.Println("Never print")
 
 
 	//2. 버퍼를 가진 채널(보관함이 있는 경우) 
-	ch := make(chan int, 2) // 보관함 2개 생성 
-	go square()
-	ch <- 9 // 보관함에다가 데이터를 보관하고 다음일을 한다.    
-	fmt.Println("print")
+	// ch := make(chan int, 2) // 보관함 2개 생성 
+	// go square()
+	// ch <- 9 // 채널에 공간이 있으므로 데이터를 보관하고 다음일을 한다.    
+	// fmt.Println("print!") 
 }
 
 func square(){

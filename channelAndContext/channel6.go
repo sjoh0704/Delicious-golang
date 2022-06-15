@@ -1,3 +1,4 @@
+// 채널을 이용한 생산자/소비자 패턴
 package main
 
 import (

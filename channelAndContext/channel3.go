@@ -21,6 +21,7 @@ func main(){
 	}
 
 	close(ch) // 좀비고루틴이 되는 것을 막기 위해 채널을 닫는다. 
+			  // 채널에 보낼 것들을 다 보냈다면 채널을 닫아주자. 
 
 	wg.Wait()
 
@@ -33,7 +34,7 @@ func square(wg *sync.WaitGroup, ch chan int){
 		fmt.Println(i*i)
 		time.Sleep(time.Second)		
 	}
-
-	// 위에서 채널로부터 무한히 받으므로 Done을 할 수가 없다. 
+	// 위에서 채널로부터 무한히 받으므로 Done을 할 수가 없게 되고, 좀비 고루틴이 된다.
+	
 	wg.Done()
 }
