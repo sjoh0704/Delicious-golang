@@ -1,5 +1,5 @@
-// 인터페이스 분리 
-// 생각보다 복잡하고 어렵다. 
+// 의존관계 역전 원칙2 예제
+// 메일이라는 구체화된 모듈과 알람이라는 구체화된 모듈을 분리하기 
 package main
 
 import (
@@ -12,6 +12,7 @@ type Mail struct{
 
 func (m *Mail) Register(listener EventListener){
 	m.listener = listener
+	fmt.Println("Mail 이벤트 리스너가 등록되었습니다.")
 }
 
 func (m *Mail) OnRecv(){
@@ -37,9 +38,8 @@ func (a *Alarm) OnFire(){
 func main(){
 
 	var listener EventListener = &Alarm{}
+	var event Event = &Mail{}
 
-	mail := &Mail{}
-	mail.Register(listener)
-
-	mail.OnRecv() 
+	event.Register(listener)
+	listener.OnFire()
 }

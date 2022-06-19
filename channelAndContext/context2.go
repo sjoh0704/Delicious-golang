@@ -1,4 +1,4 @@
-// 채널을 이용한 생산자/소비자 패턴
+// 채널과 컨텍스트를 이용한 생산자/소비자 패턴
 package main
 
 import (
@@ -13,7 +13,8 @@ var wg sync.WaitGroup
 // publisher
 type Publisher struct {
 	ctx         context.Context
-	subscribeCh chan chan<- string // channel을 chan<-string 타입으로 만들겠다.  스트링 데이터를 넣기만 가능한 채널 
+	subscribeCh chan chan<- string // channel을 chan<-string 타입으로 만들겠다. 
+								   // 화살표는 단방향을 의미한다. 즉 string 데이터를 넣기만 가능한 채널
 	publishCh   chan string
 	subscribers []chan<- string
 }
