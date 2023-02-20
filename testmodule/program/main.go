@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"test/exinit"
-	"test/custompkg"
+	"test2/exinit"
+	"test2/custompkg"
 	"github.com/guptarohit/asciigraph"  // github에서 패키지 가져오기 
 	"github.com/tuckersGo/musthaveGo/ch16/expkg"
 )
